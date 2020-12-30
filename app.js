@@ -21,22 +21,26 @@ function receiveMessage(e){
   const objData = JSON.parse(e.data);
   const content = document.querySelector('.content');
   const div = document.createElement('div');
-  div.innerText = `${objData.message}----${objData.time}`
+  const info = `${objData.message}----${objData.time}`;
+  const message = `${objData.user}: ${objData.message} at ${objData.time}`
 
   switch (objData.type) {
     case 'ENTER':
       addClass(div, 'font-enter');
+      appendChild(content, div, info);
+
       break;
       
     case "MESSAGE":
       addClass(div, 'font-message');
+      appendChild(content, div, message);
       break;
 
     case "LEAVE":
       addClass(div, 'font-leave'); 
+      appendChild(content, div, info);
   }
 
-    content.appendChild(div);
 }
 
 function resetMsgInput(){
@@ -45,4 +49,9 @@ function resetMsgInput(){
 
 function addClass(element, className){
   element.classList.add(className);
+}
+
+function appendChild(container, element, text){
+  element.innerText = text;
+  container.appendChild(element);
 }
