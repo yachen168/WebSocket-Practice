@@ -1,28 +1,25 @@
 const socket = new WebSocket("ws://localhost:8080");
 
-const btn = document.querySelector("button");
-const messageInput = document.querySelector("input");
-const content = document.querySelector('p');
+const submitButton = document.querySelector(".button-submit");
+const msgInput = document.querySelector(".input-msg");
+const content = document.querySelector('.content');
 
-// 與 websocket 服務器連結時觸發
-socket.addEventListener("open", socketOpenHandler);
-
-btn.addEventListener("click", submit);
-
-function socketOpenHandler(){
-  // content.innerHTML = '連接成功';
-}
+init();
 
 // 給 websocket 發送訊息
 function submit() {
-  const message = messageInput.value;
-  socket.send(message);
+  const message = msgInput.value;
 
-  messageInput.value = '';
+  socket.send(message);
+  resetMsgInput();
 }
 
-// 接收 websocket 的訊息
-socket.addEventListener('message', receiveMessage);
+
+function init(){
+  submitButton.addEventListener("click", submit);
+  // 接收 websocket 的訊息
+  socket.addEventListener('message', receiveMessage);
+}
 
 function receiveMessage(e){
   const objData = JSON.parse(e.data)
@@ -41,5 +38,11 @@ function receiveMessage(e){
     case "LEAVE":
       div.classList.add('font-leave'); 
   }
+
     content.appendChild(div);
+}
+
+
+function resetMsgInput(){
+  msgInput.value = '';
 }

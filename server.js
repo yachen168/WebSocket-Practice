@@ -21,6 +21,7 @@ server.on('connection', function connection(ws, request) {
 
   broadcast({
     type: TYPE_ENTER,
+    user: clientName,
     message: `${clientName} 進入了聊天室`,
     time: new Date().toLocaleTimeString()
   });
@@ -32,6 +33,7 @@ server.on('connection', function connection(ws, request) {
     // 傳送訊息給該所有使用者
     broadcast({
       type: TYPE_MESSAGE,
+      user: clientName,
       message: message,
       time: new Date().toLocaleTimeString()
     });
@@ -43,6 +45,7 @@ server.on('connection', function connection(ws, request) {
     // 告訴所有 clients 有人離開了
     broadcast({
       type: TYPE_LEAVE,
+      user: clientName,
       message: `${clientName} 已經離開聊天室`,
       time: new Date().toLocaleTimeString()
     });
