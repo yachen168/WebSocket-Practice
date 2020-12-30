@@ -17,7 +17,7 @@ server.on('connection', function connection(ws, request) {
   const port = request.connection.remotePort;
   const clientName = `使用者 ${port}`;
 
-  console.log('%s is connected', clientName)
+  console.log(`${clientName} 已連接`)
 
   broadcast({
     type: TYPE_ENTER,
@@ -28,7 +28,7 @@ server.on('connection', function connection(ws, request) {
 
   // 每當接收到 client 端的數據，就會觸發
   ws.on('message', function incoming(message) {
-    console.log('接收到了用戶數據', message)
+    console.log(`接收到了 client 端數據: ${message}`)
 
     // 傳送訊息給該所有使用者
     broadcast({
@@ -52,6 +52,7 @@ server.on('connection', function connection(ws, request) {
   });
 
 });
+
 
 // 廣播消息给所有客户端
 function broadcast(objMessage){
