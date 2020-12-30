@@ -2,33 +2,31 @@ const socket = new WebSocket("ws://localhost:8080");
 
 init();
 
-function submit() {
-  const msgInput = document.querySelector(".input-msg");
-  const message = msgInput.value;
-  // 給 websocket 發送訊息
-  socket.send(message);
-  resetMsgInput();
-}
-
-
 function init(){
   const submitButton = document.querySelector(".button-submit");
   submitButton.addEventListener("click", submit);
   socket.addEventListener('message', receiveMessage);
 }
 
+function submit() {
+  const msgInput = document.querySelector(".input-msg");
+  const message = msgInput.value;
+  // 給 websocket 發送訊息
+  socket.send(message);
+  resetMsgInput(msgInput);
+}
+
 function receiveMessage(e){
   const objData = JSON.parse(e.data);
   const content = document.querySelector('.content');
   const div = document.createElement('div');
-  const info = `${objData.message}----${objData.time}`;
+  const info = `${objData.message} at ${objData.time}`;
   const message = `${objData.user}: ${objData.message} at ${objData.time}`
 
   switch (objData.type) {
     case 'ENTER':
       addClass(div, 'font-enter');
       appendChild(content, div, info);
-
       break;
       
     case "MESSAGE":
@@ -43,8 +41,8 @@ function receiveMessage(e){
 
 }
 
-function resetMsgInput(){
-  msgInput.value = '';
+function resetMsgInput(inputElement){
+  inputElement.value = '';
 }
 
 function addClass(element, className){
