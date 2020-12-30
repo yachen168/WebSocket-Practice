@@ -38,7 +38,6 @@ function receiveMessage(e){
       addClass(div, 'font-leave'); 
       appendChild(content, div, info);
   }
-
 }
 
 function resetMsgInput(inputElement){
