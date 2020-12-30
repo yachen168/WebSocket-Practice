@@ -1,0 +1,24 @@
+{
+  "name": "Realtime-Chat",
+  "version": "1.0.0",
+  "description": "## 執行步驟 - 1. clone 專案並打開",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yachen168/Realtime-Chat.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yachen168/Realtime-Chat/issues"
+  },
+  "homepage": "https://github.com/yachen168/Realtime-Chat#readme",
+  "dependencies": {
+    "ws": "^7.4.2"
+  }
+}

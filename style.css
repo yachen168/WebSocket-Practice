@@ -1,0 +1,20 @@
+h1, h2 {
+  font-family: Lato;
+}
+
+p {
+  height: 200px;
+  border: 1px solid #000;
+}
+
+.font-enter {
+  color: #666;
+}
+
+.font-message {
+  color: rgb(27, 99, 6);
+}
+
+.font-leave {
+  color: rgb(184, 125, 58);
+}
