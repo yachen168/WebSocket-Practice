@@ -1,8 +1,8 @@
 /* 在 node.js 使用 ws 套件 */
 const WebSocket = require('ws');
-const PORT = process.env.PORT || 3000;
+const port = 8080;
 
-const server = new WebSocket.Server({PORT});
+const server = new WebSocket.Server({port});
 
 const TYPE_ENTER = 'ENTER';
 const TYPE_LEAVE = 'LEAVE';
